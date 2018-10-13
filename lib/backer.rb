@@ -1,27 +1,27 @@
+require 'pry'
+
 class Backer
+  attr_accessor :name
 
-# initialize
-  # name
-  # save to @@all
+  @@all = []
 
-# class method .all
-  # @@all
+  def initialize(name)
+    @name = name
+    @backed_projects = []
+    @@all << self
+  end
 
-# instance method .back_project
-  # Project.new(name)
+  def self.all
+    @@all
+  end
 
-# backed_projects
-  # iterate and show projects backed by self
+  def back_project(project)
+    @backed_projects << project
+    project.backers << self
+  end
 
-# backers
-  # iterate and show backers of a project
-
+  def backed_projects
+    @backed_projects
+  end
 
 end
-
-bob = Backer.new("Bob")
-awesome_project = Project.new("This is an Awesome Project")
-
-bob.back_project(awesome_project)
-bob.backed_projects
-awesome_project.backers
